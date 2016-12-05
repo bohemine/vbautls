@@ -105,7 +105,7 @@ End Function
 '第3引数sheetName省略時はアクティブなシートが選択されます。
 'フィルタは先頭行で実行されます。
 
-'引数例:filter 3, ">2015/12/16", filterStr 1, ">20"
+'引数例:filter 3, ">2015/12/16", "sheet1"
 
 Function filter(columnIndex As Integer, status As Variant, Optional sheetName As Variant)
 
