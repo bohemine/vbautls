@@ -13,10 +13,31 @@ Option Explicit
 '+--Overview--------------------------------------------------------+
 'Class module:GridlineUtl
 'Version:1.0.0
-
-'このクラスモジュールは罫線操作用のメソッドを提供します。
 '
 '+------------------------------------------------------------------+
+
+
+
+'+--Const List--------------------------------------------------------+
+'
+'[LineStyle]
+'実線 (細): xlContinuous
+'破線:      xlDash
+'一点鎖線:  xlDashDot
+'二点鎖線:  xlDashDotDot
+'点線:      xlDot
+'二重線:    xlDouble
+'斜め斜線:  xlSlantDashDot
+'無し:      xlLineStyleNone
+'
+'[Weight]
+'極細:      xlHairline
+'細:        xlThin
+'中:        xlMedium
+'太:        xlThick
+'
+'+------------------------------------------------------------------+
+
 
 
 
@@ -24,9 +45,9 @@ Option Explicit
 
 'writeGrid
 
-'>シートと範囲を指定し、格子状に罫線を引きます。
+'>シートとセル範囲を指定し、格子状に罫線を引きます。
 '引数range_v省略時は、アクティブなセル範囲を対象とします。
-'この場合シートもアクティブシートになるため引数sheetNameも省略する必要があります。
+'引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
 
@@ -65,9 +86,9 @@ End Function
 
 'writeGridEdge
 
-'>シートと範囲を指定し、範囲の上下左右に罫線を引きます。
+'>シートとセル範囲を指定し、セル範囲の上下左右の外枠のみに罫線を引きます。
 '引数range_v省略時は、アクティブなセル範囲を対象とします。
-'この場合シートもアクティブシートになるため引数sheetNameも省略する必要があります。
+'引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
 '引数例:writeGridEdge xlContinuous, xlThick, "A1:C4", "Sheet1"
@@ -97,9 +118,9 @@ End Function
 
 'writeGridInside
 
-'>シートと範囲を指定し、範囲の内部に罫線を引きます。
+'>シートとセル範囲を指定し、セル範囲の内部に罫線を引きます。
 '引数range_v省略時は、アクティブなセル範囲を対象とします。
-'この場合シートもアクティブシートになるため引数sheetNameも省略する必要があります。
+'引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
 '
@@ -161,7 +182,7 @@ End Function
 
 'writeGridSheetHoraizontal
 
-'>シートと範囲を指定し、水平方向の罫線を引きます。
+'>シートを指定し、シート全体に水平方向の罫線を引きます。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
 '
@@ -193,8 +214,7 @@ End Function
 
 '>シートを指定し、値が入力されている範囲に格子状に罫線を引きます。
 'sheetName省略時はアクティブなシートが選択されます。
-'
-'
+
 Function writeGridUsedRange(lineStyle_v As Variant, weight_v As Variant, Optional sheetName As Variant)
 
     If IsMissing(sheetName) Then
@@ -216,13 +236,14 @@ Function writeGridUsedRange(lineStyle_v As Variant, weight_v As Variant, Optiona
 End Function
 
 
-
 'writeGridColumns
 
 '>シートと列を指定し、格子状に罫線を引きます。
 'sheetName省略時はアクティブなシートが選択されます。
 '
-'引数例:writeGridColumns xlContinuous, xlThick, "A:I", "Sheet1" 離れた列範囲指定 "A:D, G:H"
+'引数例:writeGridColumns xlContinuous, xlThick, "A:I", "hogeSheet"
+'離れた列範囲指定の場合: writeGridColumns xlContinuous, xlThick, "A:D, G:H", "hogeSheet"
+
 Function writeGridColumns(lineStyle_v As Variant, weight_v As Variant, columnsName As String, Optional sheetName As Variant)
 
     If IsMissing(sheetName) Then
@@ -242,7 +263,9 @@ End Function
 '>シートと行を指定し、格子状に罫線を引きます。
 'sheetName省略時はアクティブなシートが選択されます。
 '
-'引数例:writeGridRows xlContinuous, xlThick, "A:I", "Sheet1" 離れた列範囲指定 "1:3, 14:15"
+'引数例:writeGridRows xlContinuous, xlThick, "A:I", "hogeSheet"
+'離れた行範囲指定の場合: writeGridRows xlContinuous, xlThick, "1:3, 14:15", "hogeSheet"
+
 Function writeGridRows(lineStyle_v As Variant, weight_v As Variant, rowsName As String, Optional sheetName As Variant)
 
     If IsMissing(sheetName) Then
@@ -252,6 +275,70 @@ Function writeGridRows(lineStyle_v As Variant, weight_v As Variant, rowsName As 
         Worksheets(sheetName).Activate
         Range(rowsName).Select
         writeGrid lineStyle_v, weight_v
+    End If
+
+End Function
+
+'writeGridBottom
+
+'>シートとをセル範囲を指定し、下辺に罫線を引きます。
+'
+'引数range_v省略時は、アクティブなセル範囲を対象とします。
+'引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
+'sheetName省略時はアクティブなシートが選択されます。
+'
+'引数例:writeGridBottom xlContinuous, xlThick, "A2:C3", "hogeSheet"
+
+
+Function writeGridBottom(lineStyle_v As Variant, weight_v As Variant, Optional range_v As Variant, Optional sheetName As Variant)
+
+    If IsMissing(range_v) Then
+
+    '範囲指定が引数として渡されず、アクティブな領域を対象とする場合
+        With Selection.Borders(xlEdgeBottom)
+        .LineStyle = lineStyle_v
+        .Weight = weight_v
+        End With
+    
+        With Selection.Borders(xlEdgeBottom)
+        .LineStyle = lineStyle_v
+        .Weight = weight_v
+        End With
+    
+    Else
+    
+    '範囲指定が引数として渡される場合、sheetNameが渡されているかどうかで分岐する。
+    
+    
+        If IsMissing(sheetName) Then
+    
+        'sheetName省略した場合
+        With Worksheets(ActiveSheet.Name).Range(range_v).Borders(xlEdgeBottom)
+        .LineStyle = lineStyle_v
+        .Weight = weight_v
+        End With
+    
+        With Worksheets(ActiveSheet.Name).Range(range_v).Borders(xlEdgeBottom)
+        .LineStyle = lineStyle_v
+        .Weight = weight_v
+        End With
+    
+    
+        Else
+        
+        
+        With Worksheets(sheetName).Range(range_v).Borders(xlEdgeBottom)
+        .LineStyle = lineStyle_v
+        .Weight = weight_v
+        End With
+    
+        With Worksheets(sheetName).Range(range_v).Borders(xlEdgeBottom)
+        .LineStyle = lineStyle_v
+        .Weight = weight_v
+        End With
+    
+        End If
+    
     End If
 
 End Function
@@ -270,7 +357,7 @@ End Function
 
 'hideGridLine
 
-'枠線を表示状態にします。
+'枠線を非表示状態にします。
 Function hideGridline()
 
       ActiveWindow.DisplayGridlines = False
