@@ -25,26 +25,13 @@ Option Explicit
 '+--Public Functions------------------------------------------------+
 
 
-'removeHeadRow
-'指定したシートの先頭行を削除します。
-
-'sheetName省略時はアクティブなシートを対象とします。
-Function sum(Optional sheetName As Variant)
-  
-  
-    
-End Function
-
-'total
-
 '指定したシートの列の数値データを集計します。
 'カラム名は"C"のように指定する。
-'
+
 Function sumColumn(columnName As String, Optional sheetName As Variant) As Long
 
     Dim columnName_forRange As String
     columnName_forRange = columnName + ":" + columnName
- 
  
    If IsMissing(sheetName) Then
     sumColumn = WorksheetFunction.Subtotal(9, Worksheets(ActiveSheet.Name).Range(columnName_forRange))
@@ -52,23 +39,8 @@ Function sumColumn(columnName As String, Optional sheetName As Variant) As Long
    Else
     sumColumn = WorksheetFunction.Subtotal(9, Worksheets(sheetName).Range(columnName_forRange))
    End If
-
     
 End Function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

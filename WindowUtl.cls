@@ -21,11 +21,10 @@ Option Explicit
 
 '+--Public Functions------------------------------------------------+
 
-'freeze
 
-'>シート名とセルを指定しウィンドウ枠を固定します。
+'シート名とセルを指定しウィンドウ枠を固定します。
+'
 '引数sheetName省略時はアクティブなシートが選択されます。
-
 
 Function freeze(cell As String, Optional sheetName As Variant)
 
@@ -39,9 +38,10 @@ Function freeze(cell As String, Optional sheetName As Variant)
 
 End Function
 
-'freezeHeadRow
 
-'>シート名を指定し先頭行を固定します。
+
+'シート名を指定し先頭行を固定します。
+'
 'すでにウィンドウ枠が固定されている場合は固定し直さない。
 'ウィンドウ枠をセットし直す場合は１度クリアして下さい。
 '引数sheetName省略時はアクティブなシートが選択されます。
@@ -60,9 +60,10 @@ Function freezeHeadRow(Optional sheetName As Variant)
  
 End Function
 
-'clearFreezePanes
 
-'>シート名を指定しウィンドウ枠を解除します。
+
+'シート名を指定しウィンドウ枠を解除します。
+'
 '引数sheetName省略時はアクティブなシートが選択されます。
 
 Function clearFreezePanes(Optional sheetName As Variant)
@@ -76,26 +77,29 @@ Function clearFreezePanes(Optional sheetName As Variant)
   
 End Function
 
-'autoFitColumns
 
-'>シート名と列を指定し列幅を最適化します。
+
+'シート名と列を指定し列幅を最適化します。
+'
 '引数sheetName省略時はアクティブなシートが選択されます。
-
+'
 '引数例:A列からI列まで　autoFitColumns "A:I", "Sheet1" 、1列のみ　autoFitColumns "C:C"
+
 Function autoFitColumns(columnsName As String, Optional sheetName As Variant)
 
     If IsMissing(sheetName) Then
-        Worksheets(ActiveSheet.Name).Columns(columnsName).autoFit
+        Worksheets(ActiveSheet.Name).columns(columnsName).autoFit
     Else
         ''ワークシート指定ありの場合
-        Worksheets(sheetName).Columns(columnsName).autoFit
+        Worksheets(sheetName).columns(columnsName).autoFit
     End If
  
 End Function
 
-'autoFitRows
 
-'>シート名と行を指定し行幅を最適化します。
+
+'シート名と行を指定し行幅を最適化します。
+'
 '引数sheetName省略時はアクティブなシートが選択されます。
 
 Function autoFitRows(rowsName As String, Optional sheetName As Variant)
@@ -110,29 +114,29 @@ Function autoFitRows(rowsName As String, Optional sheetName As Variant)
 End Function
 
 
-'setColumnWidth
 
-'>シート名と列を指定し列幅を変更します。
+'シート名と列を指定し列幅を変更します。
+'
 '引数sheetName省略時はアクティブなシートが選択されます。
 
 Function setColumnsWidth(columnsName As String, columsWidth As Integer, Optional sheetName As Variant)
     
     If IsMissing(sheetName) Then
-        Worksheets(ActiveSheet.Name).Columns(columnsName).ColumnWidth = columsWidth
+        Worksheets(ActiveSheet.Name).columns(columnsName).ColumnWidth = columsWidth
     Else
         ''ワークシート指定ありの場合
-        Worksheets(sheetName).Columns(columnsName).ColumnWidth = columsWidth
+        Worksheets(sheetName).columns(columnsName).ColumnWidth = columsWidth
     End If
     
 End Function
 
 
-'setRowsHeight
 
-'>シート名と行を指定し行幅を変更します。
+'シート名と行を指定し行幅を変更します。
 '引数sheetName省略時はアクティブなシートが選択されます。
-
+'
 '引数例:行1から行3まで　setRowsHeight "1:3", "Sheet1" 、行1のみ　setRowsHeight "1:1"
+
 Function setRowsHeight(rowsName As String, rowsHeight As Integer, Optional sheetName As Variant)
     
     If IsMissing(sheetName) Then

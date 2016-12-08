@@ -12,7 +12,7 @@ Option Explicit
 
 '+--Overview--------------------------------------------------------+
 'Classmodule:SaveUtl
-'Version:1.0.0
+'Version:0.0.1
 
 'このクラスモジュールはワークブック保存用のメソッドを提供します。
 
@@ -26,8 +26,7 @@ Option Explicit
 
 
 '開発中
-'saveBook
-
+'
 '名前を付けてワークブックを保存します。
 'fileNameは拡張子を除いた部分を渡して下さい。
 Private Function saveAsFile(fileName As String, filefilter_v As String)
@@ -42,8 +41,7 @@ End Function
 
 
 '開発中
-'saveBook
-
+'
 'ワークブックを保存します。
 Private Function saveBook(filePath_v As String, fileFormat_v As Variant)
 

@@ -24,10 +24,8 @@ Option Explicit
 '+--Public Functions------------------------------------------------+
 
 
-'addSheet
-
-'>シートを指定したシートの右に追加します。
-
+'シートを指定したシートの右に追加します。
+'
 '全ての引数を省略した場合、自動的に設定されたシート名のシートが末尾に追加されます。
 '引数newSheetNameのみを渡した場合、指定したシート名のシートが末尾に追加されます。
 '引数newSheetNameとafterSheetNameを渡した場合、指定したシート名のシートがafterSheetNameの後に追加されます。
@@ -36,7 +34,6 @@ Option Explicit
 'afterSheetName:= "Sheet2" のように引数名を指定して値を渡して下さい。
 '
 'newSheetNameとして既存のシート名を指定した場合エラーが生じます。その場合自動的に設定されたシート名で末尾に追加が行われます。
-
 
 Function addSheet(Optional newSheetName As Variant, Optional afterSheetName As Variant)
 
@@ -53,7 +50,6 @@ Else
     If IsMissing(afterSheetName) Then
         Worksheets.Add(after:=Worksheets(Worksheets.Count)).Name = newSheetName
     Else
-
         Worksheets.Add(after:=Worksheets(Worksheets(afterSheetName).index)).Name = newSheetName
     End If
   
@@ -61,10 +57,10 @@ End If
      
 End Function
 
-'addSheetBefore
 
-'>シートを指定したシートの左に追加します。
 
+'シートを指定したシートの左に追加します。
+'
 '全ての引数を省略した場合、自動的に設定されたシート名のシートが一番左に追加されます。
 '引数newSheetNameのみを渡した場合、指定したシート名のシートが一番左に追加されます。
 '引数newSheetNameとbeforeSheetNameを渡した場合、指定したシート名のシートがbeforeSheetNameの前に追加されます。
@@ -99,10 +95,9 @@ End If
 End Function
 
 
-'renameSheet
 
-'>指定したしシートの名前を変更します。
-
+'指定したしシートの名前を変更します。
+'
 '引数oldSheetNameは省略不可です。
 '既に存在するシート名を渡した場合エラーが生じます。
 
@@ -112,10 +107,10 @@ Function renameSheet(oldSheetName As String, newSheetName As String)
      
 End Function
 
-'deleteSheet
 
-'>指定したシートを削除します。
 
+'指定したシートを削除します。
+'
 'showAlertにFalseを渡すと削除時のアラートを表示しないようになります。
 'showAleart省略もしくはTrueを渡すとアラート有効のまま実行します。
 '存在しないシートを指定するとエラーとなります。
@@ -142,13 +137,15 @@ End If
 
 End Function
 
-'copySheet
-'>指定したシートを末尾にコピーします。
+
+
+'指定したシートを末尾にコピーします。
 '
 '引数newSheetName省略時はシート名は自動的に設定されます。
+
 Function copySheet(sheetName As String, Optional newSheetName As Variant)
   
-Worksheets(sheetName).Copy after:=Worksheets(Worksheets.Count)
+Worksheets(sheetName).copy after:=Worksheets(Worksheets.Count)
   
 If IsMissing(newSheetName) Then
     
@@ -158,10 +155,12 @@ End If
   
 End Function
 
-'moveSheet
-'>指定したシートを指定したシートの左へ移動します。
+
+
+'指定したシートを指定したシートの右へ移動します。
 '
 '引数afterSheetName省略時は末尾に移動します。
+
 Function moveSheet(sheetName As String, Optional afterSheetName As Variant)
   
 If IsMissing(afterSheetName) Then
@@ -172,10 +171,12 @@ End If
   
 End Function
 
-'moveSheetBefore
-'>指定したシートを指定したシートの左へ移動します。
+
+
+'指定したシートを指定したシートの左へ移動します。
 '
 '引数beforeSheetName省略時は一番左へ移動します。
+
 Function moveSheetBefore(sheetName As String, Optional beforeSheetName As Variant)
    
 If IsMissing(beforeSheetName) Then
