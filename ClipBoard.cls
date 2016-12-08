@@ -21,6 +21,7 @@ Attribute VB_Exposed = False
 
 
 '文字列を受け取りクリップボードに保存します。
+
 Function saveClip(str As String)
   With New MSForms.DataObject
     .SetText str
@@ -29,7 +30,9 @@ Function saveClip(str As String)
 End Function
 
 
+
 'クリップボードの中身を取得します。
+
 Function getClip()
    With New MSForms.DataObject
      .GetFromClipboard

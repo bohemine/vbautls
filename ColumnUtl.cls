@@ -22,13 +22,9 @@ Option Explicit
 
 '+--Public Functions------------------------------------------------+
 
-
-'removeColumns
-
 'シートと列を指定し、その列を削除します。
-
-'引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
+'引数sheetNameのみ省略時はアクティブなシートが選択されます。
 
 Function removeColumns(columnsName As String, Optional sheetName As Variant)
 
@@ -40,14 +36,14 @@ End If
     
 End Function
 
-'insertColumns
+
 
 'シートと列を指定し、列を挿入します。
 'クリップボードに列が格納されてある場合、それが貼り付けされます。
 'クリップボードに列以外の有効でない範囲のデータがある場合エラーが生じる可能性があります。
-
-'引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
+'引数sheetNameのみ省略時はアクティブなシートが選択されます。
+
 Function insertColumns(columnsName As String, Optional sheetName As Variant)
 
 If IsMissing(sheetName) Then
@@ -58,7 +54,7 @@ End If
     
 End Function
 
-'renameHeader
+
 
 '指定した列のヘッダー名を付けます。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
@@ -73,26 +69,23 @@ End If
     
 End Function
 
-'copyColumns
+
 
 'シートと列を指定し、その列を指定された列へコピーします。
-
 '貼り付けも行われます。
+
 Function copyColumns(sheetName_src As String, columnName_src As String, sheetName_dst As String, columnName_dst As String)
 
-
-    Worksheets(sheetName_src).Range(columnName_src + ":" + columnName_src).Copy Worksheets(sheetName_dst).Range(columnName_dst + ":" + columnName_dst)
+    Worksheets(sheetName_src).Range(columnName_src + ":" + columnName_src).copy Worksheets(sheetName_dst).Range(columnName_dst + ":" + columnName_dst)
 
 End Function
 
 
 
-'clearColumnsContents
-
 'シートと列を指定し、その列にあるデータをクリアします。
-
-'引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
+'引数sheetNameのみ省略時はアクティブなシートが選択されます。
+
 Function clearColumnsContents(columnsName As String, Optional sheetName As Variant)
 
 If IsMissing(sheetName) Then
@@ -104,12 +97,11 @@ End If
 End Function
 
 
-'cutColumns
 
 'シートと列を指定し、その列にあるデータを切り取ります。
-
-'引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
+'引数sheetNameのみ省略時はアクティブなシートが選択されます。
+
 Function cutColumns(columnsName As String, Optional sheetName As Variant)
 
 If IsMissing(sheetName) Then
@@ -121,13 +113,12 @@ End If
 End Function
 
 
-'moveColumns
 
 'シートと列を指定し、その列を指定された列へ移動します。
-
+'
 '切り取った列が貼り付け先よりも左側にある場合、指定した列より１つ左の列に貼り付けられます。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
-'
+
 Function moveColumns(columnsName_src As String, columnName_dst As String, Optional sheetName As Variant)
 
 If IsMissing(sheetName) Then
@@ -136,26 +127,25 @@ If IsMissing(sheetName) Then
 Else
     cutColumns columnsName_src, sheetName
     insertColumns columnName_dst, sheetName
-   
 End If
     
 End Function
 
 
-'getColumnNumber
 
 '列名を指定し、その列番号返します。
 'return Long
-
+'
 '切り取った列が貼り付け先よりも左側にある場合、指定した列より１つ左の列に貼り付けられます。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
-'
+
 Function getColumnNumber(columnsName As String) As Long
 
     getColumnNumber = ActiveSheet.Range(columnsName + "1").column
+
 End Function
 
-'getColumnName
+
 
 '列番号を指定し、その列名返します。
 
@@ -163,18 +153,19 @@ End Function
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
 Function getColumnName(columnIndex As Integer)
+    
     getColumnName = Split(Cells(, columnIndex).Address, "$")(1)
+
 End Function
 
 
-'getColumnNameFromHeader
 
 '先頭行にあるフィールド名を指定し、最初に見つかった列の列名を返します。
-
-
+'
 '切り取った列が貼り付け先よりも左側にある場合、指定した列より１つ左の列に貼り付けられます。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '完全に同一の文字列を対象とします。文字列の一部がマッチしても対象になりません。
+
 Function getColumnNameByField(target As String, Optional sheetName As Variant) As String
 
 If IsMissing(sheetName) Then

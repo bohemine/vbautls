@@ -43,13 +43,12 @@ Option Explicit
 
 '+--Public Functions------------------------------------------------+
 
-'writeGrid
 
-'>シートとセル範囲を指定し、格子状に罫線を引きます。
+'シートとセル範囲を指定し、格子状に罫線を引きます。
+'
 '引数range_v省略時は、アクティブなセル範囲を対象とします。
 '引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
-'
 
 Function writeGrid(lineStyle_v As Variant, weight_v As Variant, Optional range_v As Variant, Optional sheetName As Variant)
 
@@ -84,9 +83,10 @@ End If
     
 End Function
 
-'writeGridEdge
 
-'>シートとセル範囲を指定し、セル範囲の上下左右の外枠のみに罫線を引きます。
+
+'シートとセル範囲を指定し、セル範囲の上下左右の外枠のみに罫線を引きます。
+'
 '引数range_v省略時は、アクティブなセル範囲を対象とします。
 '引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
@@ -116,9 +116,8 @@ End If
 End Function
 
 
-'writeGridInside
 
-'>シートとセル範囲を指定し、セル範囲の内部に罫線を引きます。
+'シートとセル範囲を指定し、セル範囲の内部に罫線を引きます。
 '引数range_v省略時は、アクティブなセル範囲を対象とします。
 '引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
@@ -144,7 +143,6 @@ Function writeGridInside(lineStyle_v As Variant, weight_v As Variant, Optional r
     Else
     
     '範囲指定が引数として渡される場合、sheetNameが渡されているかどうかで分岐する。
-    
     
         If IsMissing(sheetName) Then
     
@@ -180,9 +178,9 @@ Function writeGridInside(lineStyle_v As Variant, weight_v As Variant, Optional r
 End Function
 
 
-'writeGridSheetHoraizontal
 
-'>シートを指定し、シート全体に水平方向の罫線を引きます。
+'シートを指定し、シート全体に水平方向の罫線を引きます。
+'
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
 '
 '
@@ -210,9 +208,9 @@ Function writeGridSheetHoraizontal(lineStyle_v As Variant, weight_v As Variant, 
 End Function
 
 
-'writeGridUsedRange
 
-'>シートを指定し、値が入力されている範囲に格子状に罫線を引きます。
+'シートを指定し、値が入力されている範囲に格子状に罫線を引きます。
+'
 'sheetName省略時はアクティブなシートが選択されます。
 
 Function writeGridUsedRange(lineStyle_v As Variant, weight_v As Variant, Optional sheetName As Variant)
@@ -236,9 +234,9 @@ Function writeGridUsedRange(lineStyle_v As Variant, weight_v As Variant, Optiona
 End Function
 
 
-'writeGridColumns
 
-'>シートと列を指定し、格子状に罫線を引きます。
+'シートと列を指定し、格子状に罫線を引きます。
+'
 'sheetName省略時はアクティブなシートが選択されます。
 '
 '引数例:writeGridColumns xlContinuous, xlThick, "A:I", "hogeSheet"
@@ -258,9 +256,9 @@ Function writeGridColumns(lineStyle_v As Variant, weight_v As Variant, columnsNa
 End Function
 
 
-'writeGridRows
 
-'>シートと行を指定し、格子状に罫線を引きます。
+'シートと行を指定し、格子状に罫線を引きます。
+'
 'sheetName省略時はアクティブなシートが選択されます。
 '
 '引数例:writeGridRows xlContinuous, xlThick, "A:I", "hogeSheet"
@@ -279,9 +277,9 @@ Function writeGridRows(lineStyle_v As Variant, weight_v As Variant, rowsName As 
 
 End Function
 
-'writeGridBottom
 
-'>シートとをセル範囲を指定し、下辺に罫線を引きます。
+
+'シートとをセル範囲を指定し、下辺に罫線を引きます。
 '
 '引数range_v省略時は、アクティブなセル範囲を対象とします。
 '引数range_v省略時は、アクティブシートになるため引数sheetNameも省略する必要があります。
@@ -289,8 +287,7 @@ End Function
 '
 '引数例:writeGridBottom xlContinuous, xlThick, "A2:C3", "hogeSheet"
 
-
-Function writeGridBottom(lineStyle_v As Variant, weight_v As Variant, Optional range_v As Variant, Optional sheetName As Variant)
+Function WriteGridBottom(lineStyle_v As Variant, weight_v As Variant, Optional range_v As Variant, Optional sheetName As Variant)
 
     If IsMissing(range_v) Then
 
@@ -344,23 +341,22 @@ Function writeGridBottom(lineStyle_v As Variant, weight_v As Variant, Optional r
 End Function
 
 
-'showGridLine
 
 '枠線を表示状態にします。
+
 Function showGridline()
 
-      ActiveWindow.DisplayGridlines = True
+  ActiveWindow.DisplayGridlines = True
 
 End Function
 
 
 
-'hideGridLine
-
 '枠線を非表示状態にします。
+
 Function hideGridline()
 
-      ActiveWindow.DisplayGridlines = False
+  ActiveWindow.DisplayGridlines = False
 
 End Function
 

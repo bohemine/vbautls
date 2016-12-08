@@ -22,10 +22,7 @@ Option Explicit
 
 '+--Public Functions------------------------------------------------+
 
-
-'setFilter
-
-'>シートと行番号を指定し、フィルタを表示します。
+'シートと行番号を指定し、フィルタを表示します。
 '第2引数sheetName省略時はアクティブなシートが選択されます。
 '
 '指定したシート内のいずれかの箇所でフィルタが表示済みであった場合は動作しません。
@@ -38,7 +35,6 @@ Function setFilter(rowNumber As String, Optional sheetName As Variant)
     Dim RowNumberStr As String
     RowNumberStr = rowNumber + ":" + rowNumber
 
-
     '第2引数sheetNameの明示、省略による条件分岐
     If IsMissing(sheetName) Then
         ''ワークシート指定なしの場合アクティブなシートを選択のため何もしない。
@@ -47,7 +43,6 @@ Function setFilter(rowNumber As String, Optional sheetName As Variant)
             Worksheets(sheetName).Activate
     End If
 
-    
     If ActiveSheet.AutoFilterMode = False Then
         Range(RowNumberStr).Select
         Selection.AutoFilter
@@ -56,9 +51,8 @@ Function setFilter(rowNumber As String, Optional sheetName As Variant)
 End Function
 
 
-'setHeaderFilter
 
-'>指定したシートの先頭行でフィルタを表示します。
+'指定したシートの先頭行でフィルタを表示します。
 '引数sheetName省略時はアクティブなシートが選択されます。
 '
 '指定したシート内のいずれかの箇所でフィルタが表示済みであった場合は、表示し直すことはありません。
@@ -76,9 +70,8 @@ Function setHeadFilter(Optional sheetName As Variant)
 End Function
 
 
-'clearFilter
 
-'>指定したシート内のフィルタを非表示にします。
+'指定したシート内のフィルタを非表示にします。
 '引数sheetName省略時はアクティブなシートが選択されます。
 'シート内全域に対して有効。
 
@@ -99,7 +92,6 @@ Function clearFilter(Optional sheetName As Variant)
 End Function
 
 
-'filter
 
 'シートと列番号と条件１つを指定しフィルタを行います。
 '第3引数sheetName省略時はアクティブなシートが選択されます。
@@ -119,17 +111,14 @@ Function filter(columnIndex As Integer, status As Variant, Optional sheetName As
 End Function
 
 
-'filterOr
 
-'シートと指定した列へ２つの条件のフィルタを行います。
+'シートと指定した列へ２つの条件のOr演算によるフィルタを行います。
 '第4引数sheetName省略時はアクティブなシートが選択されます。
 'フィルタは先頭行で実行されます。
-'２つの条件はOr演算となります。
 
 Function filterOr(columnIndex As Integer, status1 As String, status2 As String, Optional sheetName As Variant)
 
    If IsMissing(sheetName) Then
-           
             Worksheets(ActiveSheet.Name).Range("A1").AutoFilter field:=columnIndex, Criteria1:=status1, Operator:=xlOr, Criteria2:=status2
 
         Else
@@ -139,13 +128,12 @@ Function filterOr(columnIndex As Integer, status1 As String, status2 As String, 
     
 End Function
 
-'filterAnd
 
-'シートと指定した列へ２つの条件のフィルタを行います。
+
+'シートと指定した列へ２つの条件のAnd演算によるフィルタを行います。
 '第4引数sheetName省略時はアクティブなシートが選択されます。
 'フィルタは先頭行で実行されます。
-'２つの条件はAnd演算となります。
-
+'
 '引数例:範囲で絞り込む filterAnd 2, ">=1", "<=10", "Sheet1"
 
 Function filterAnd(columnIndex As Integer, status1 As String, status2 As String, Optional sheetName As Variant)
@@ -162,7 +150,6 @@ Function filterAnd(columnIndex As Integer, status1 As String, status2 As String,
 End Function
 
 
-'filterSpan
 
 'シートと指定した列へ２つの条件の範囲でフィルタを行います。
 '第4引数sheetName省略時はアクティブなシートが選択されます。

@@ -24,11 +24,10 @@ Option Explicit
 '+--Public Functions------------------------------------------------+
 
 
-'changeFont
-
 '指定したシート全体のフォントを変更します。
-
+'
 'sheetName省略時はアクティブなシートを対象とします。
+
 Function changeFont(fontName As String, Optional sheetName As Variant)
 
     If IsMissing(sheetName) Then
@@ -40,11 +39,11 @@ Function changeFont(fontName As String, Optional sheetName As Variant)
 End Function
 
 
-'resizeFont
 
-'指定したシート全体のフォントを変更します。
-
+'指定したシート全体のフォントのサイズを変更します。
+'
 'sheetName省略時はアクティブなシートを対象とします。
+
 Function resizeFont(fontSize_v As Integer, Optional sheetName As Variant)
 
     If IsMissing(sheetName) Then

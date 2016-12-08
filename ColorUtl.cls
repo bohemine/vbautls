@@ -24,12 +24,11 @@ Option Explicit
 
 'paintRow
 '指定した行へ色を付けます。
-
+'
 'sheetName省略時はアクティブなシートを対象とします。
 Function paintRow(rowNumber As String, colorIndex As Long, Optional sheetName As Variant)
   
     Dim rowNumber_forRange As String
-  
     rowNumber_forRange = rowNumber + ":" + rowNumber
   
     If IsMissing(sheetName) Then
@@ -40,10 +39,12 @@ Function paintRow(rowNumber As String, colorIndex As Long, Optional sheetName As
 
 End Function
 
-'paintRowFont
-'指定した行の文字へ色を付けます。
 
+
+'指定した行の文字へ色を付けます。
+'
 'sheetName省略時はアクティブなシートを対象とします。
+
 Function paintRowFont(rowNumber As String, colorIndex As Long, Optional sheetName As Variant)
   
     Dim rowNumber_forRange As String
@@ -58,10 +59,12 @@ Function paintRowFont(rowNumber As String, colorIndex As Long, Optional sheetNam
 
 End Function
 
-'paintHeadRow
-'先頭行へ色を付けます。
 
+
+'先頭行へ色を付けます。
+'
 'sheetName省略時はアクティブなシートを対象とします。
+
 Function paintHeadRow(colorIndex As Long, Optional sheetName As Variant)
   
     If IsMissing(sheetName) Then
@@ -73,11 +76,12 @@ Function paintHeadRow(colorIndex As Long, Optional sheetName As Variant)
 End Function
 
 
-'paintVerticalCells
-'指定した列を対象に指定した値をもつセルへ色を付けます。
 
+'指定した列を対象に指定した値をもつセルへ色を付けます。
+'
 '検索対象は値として指定されます。
 'sheetName省略時はアクティブなシートを対象とします。
+
 Function paintVerticalCells(columnNumber As String, target As String, colorIndex As Long, Optional sheetName As Variant)
 
 Dim columnNumber_forRange As String, fCell As Range, fAdr As String
@@ -116,12 +120,12 @@ End If
 End Function
 
 
-'paintVerticalCellsFont
 
 '指定した列に指定した値をもつ行の文字へ着色
-
+'
 '検索対象は値として指定されます。
 'sheetName省略時はアクティブなシートを対象とします。
+
 Function paintVerticalCellsFont(columnNumber As String, target As String, colorIndex As Long, Optional sheetName As Variant)
 
 Dim columnNumber_forRange As String, fCell As Range, fAdr As String
@@ -147,23 +151,25 @@ Else
     Set fCell = Worksheets(sheetName).Range(columnNumber_forRange).Find(what:=target, LookIn:=xlValues)
 
     If Not fCell Is Nothing Then
-        fAdr = fCell.Address
-        Do
+      fAdr = fCell.Address
+      Do
             fCell.Font.color = colorIndex
             Set fCell = Worksheets(sheetName).Range(columnNumber_forRange).FindNext(fCell)
             If fCell.Address = fAdr Then Exit Do
-        Loop
+      Loop
     End If
 
 End If
 
 End Function
 
-'paintRowsHave
-'指定した列に指定した値をもつ行へ色を付けます。
 
+
+'指定した列に指定した値をもつ行へ色を付けます。
+'
 'sheetName省略時はアクティブなシートを対象とします。
 '内部的にpaintRow使用
+
 Function paintRowsHave(columnNumber As String, target As String, colorIndex As Long, Optional sheetName As Variant)
 
 Dim columnNumber_forRange As String, fCell As Range, fAdr As String
@@ -203,11 +209,14 @@ End If
 
 End Function
 
-'paintRowsFontHave
-'指定した列に指定した値をもつ行の文字へ色を付けます。
 
+
+
+'指定した列に指定した値をもつ行の文字へ色を付けます。
+'
 'sheetName省略時はアクティブなシートを対象とします。
 '内部的にpaintRowFont使用
+
 Function paintRowsFontHave(columnNumber As String, target As String, colorIndex As Long, Optional sheetName As Variant)
 
 Dim columnNumber_forRange As String, fCell As Range, fAdr As String
@@ -248,34 +257,30 @@ End If
 End Function
 
 
-'colorSheetTab
 
 '指定したシートタブを色付けします。
-
+'
 'sheetName省略時はアクティブなシートを対象とします。
 
 Function colorSheetTab(colorIndex As Long, Optional sheetName As Variant)
 
 If IsMissing(sheetName) Then
- 
   Worksheets(ActiveSheet.Name).Tab.color = colorIndex
 Else
-    Worksheets(sheetName).Tab.color = colorIndex
-  
+  Worksheets(sheetName).Tab.color = colorIndex
 End If
      
 End Function
 
-'colorSheetFont
+
 
 '指定したシートの文字を色付けします。
-
+'
 'sheetName省略時はアクティブなシートを対象とします。
 
 Function colorSheetFont(colorIndex As Long, Optional sheetName As Variant)
 
 If IsMissing(sheetName) Then
- 
   Worksheets(ActiveSheet.Name).Cells.Font.color = colorIndex
 Else
   Worksheets(sheetName).Cells.Font.color = colorIndex
@@ -283,12 +288,11 @@ End If
      
 End Function
 
-'clearSheetTabColor
+
 
 '指定したシートのタブの色を消します。
-
+'
 'sheetName省略時はアクティブなシートを対象とします。
-
 
 Function clearSheetTabColor(Optional sheetName As Variant)
 
@@ -300,12 +304,11 @@ End If
      
 End Function
 
-'colorSheet
+
 
 '指定したシートのセルへ色を付けます。
-
+'
 'sheetName省略時はアクティブなシートを対象とします。
-
 
 Function colorSheet(colorIndex As Long, Optional sheetName As Variant)
 
@@ -314,14 +317,14 @@ If IsMissing(sheetName) Then
 Else
     Worksheets(sheetName).Cells.Interior.color = colorIndex
 End If
+
 End Function
 
-'colorWhiteSheet
 
-'指定したシートの色を消します。
 
+'指定したシートの色を白にします。
+'
 'sheetName省略時はアクティブなシートを対象とします。
-
 
 Function colorWhiteSheet(Optional sheetName As Variant)
 
@@ -332,12 +335,11 @@ Else
 End If
 End Function
 
-'clearSheetColor
+
 
 '指定したシートの色を消します。
-
+'
 'sheetName省略時はアクティブなシートを対象とします。
-
 
 Function clearSheetColor(Optional sheetName As Variant)
 
@@ -349,7 +351,6 @@ End If
 End Function
 
 
-'colorStripeRows
 
 '指定したシートの行をストライプ状に色付けします。
 'UsedRangeを対象とします。
@@ -357,7 +358,6 @@ End Function
 'sheetName省略時はアクティブなシートを対象とします。
 
 Function colorStripeRows(colorIndex_even As Long, colorIndex_odd As Long, Optional sheetName As Variant)
-
 
 If IsMissing(sheetName) Then
     
@@ -387,9 +387,6 @@ End If
 End Function
 
 '+------------------------------------------------------------------+
-
-
-
 
 
 

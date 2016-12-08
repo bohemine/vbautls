@@ -49,7 +49,7 @@ End Function
 'Excel2007以降でのみ使用可。
 Function removeDuplicateRows(columnIndex As Integer, header As Variant, sheetName As String)
   
-  Worksheets(sheetName).Range("A1").CurrentRegion.RemoveDuplicates Columns:=columnIndex, header:=header
+  Worksheets(sheetName).Range("A1").CurrentRegion.RemoveDuplicates columns:=columnIndex, header:=header
 
 End Function
 
@@ -64,19 +64,19 @@ End Function
 'Excel2007以降でのみ使用可。
 Function removeDuplicateRows2(columnIndex1 As Integer, columnIndex2 As Integer, header As Variant, sheetName As String)
   
-  Worksheets(sheetName).Range("A1").CurrentRegion.RemoveDuplicates Columns:=Array(columnIndex1, columnIndex2), header:=header
+  Worksheets(sheetName).Range("A1").CurrentRegion.RemoveDuplicates columns:=Array(columnIndex1, columnIndex2), header:=header
 
 End Function
 
 
 'copyRow
-
+'TODO: 数値引数対応
 '>シートと行を指定し、指定された行へコピーします。
 
 '貼り付けも行われます。
 Function copyRow(sheetName_src As String, rowName_src As String, sheetName_dst As String, rowName_dst As String)
 
-    Worksheets(sheetName_src).Range(rowName_src + ":" + rowName_src).Copy Worksheets(sheetName_dst).Range(rowName_dst + ":" + rowName_dst)
+    Worksheets(sheetName_src).Range(rowName_src + ":" + rowName_src).copy Worksheets(sheetName_dst).Range(rowName_dst + ":" + rowName_dst)
  
 End Function
 
