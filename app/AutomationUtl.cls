@@ -18,7 +18,7 @@ Attribute VB_Exposed = False
 
 '指定したアプリケーションをアクティブにします。
 'ウィンドウのタイトルを指定する。
-Function activeApp(appName As String)
+Function activeApp(appName As Variant)
 
   AppActivate appName, True
 
