@@ -2,14 +2,14 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "ClipBoard"
+Attribute VB_Name = "ClipBoardUtl"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 
 '+--Overview--------------------------------------------------------+
-'Classmodule:ClipBoard
+'Classmodule:ClipBoardUtl
 'Version:1.0.0
 
 'このクラスはクリップボードへの操作メソッドを提供します｡
