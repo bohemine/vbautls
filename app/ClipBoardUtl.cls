@@ -9,7 +9,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 
 '+--Overview--------------------------------------------------------+
-'Classmodule:ClipBoardUtl
+'Classmodule:ClipboardUtl
 'Version:1.0.0
 
 'このクラスはクリップボードへの操作メソッドを提供します｡
@@ -38,6 +38,15 @@ Function getClip()
      .GetFromClipboard
     getClip = .GetText
   End With
+End Function
+
+
+'クリップボードの中身を削除します。
+'開発中
+Private Function clearClip()
+    
+    Excel.Application.CutCopyMode = False
+
 End Function
 
 
