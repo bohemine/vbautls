@@ -25,6 +25,41 @@ Option Explicit
 '+--Public Functions------------------------------------------------+
 
 
+'シートと行番号を指定し削除します。
+'
+'sheetName省略時はアクティブなシートを対象とします。
+
+Function removeRow(rowNo As Long, Optional sheetName As Variant)
+  
+   If IsMissing(sheetName) Then
+       Rows(rowNo).Delete
+   Else
+      Sheets(sheetName).Rows(rowNo).Delete
+   End If
+    
+End Function
+
+
+
+'シートと行番号を範囲指定し削除します。
+'
+'sheetName省略時はアクティブなシートを対象とします。
+
+Function removeRows(rowNo_from As Long, rowNo_to As Long, Optional sheetName As Variant)
+  
+  Dim rowNoRange As String
+  rowNoRange = CStr(rowNo_from) + ":" + CStr(rowNo_to)
+  
+   If IsMissing(sheetName) Then
+       Worksheets(ActiveSheet.Name).Range(rowNoRange).Delete
+   Else
+      Worksheets(sheetName).Range(rowNoRange).Delete
+   End If
+    
+End Function
+
+
+
 '指定したシートの先頭行を削除します。
 '
 'sheetName省略時はアクティブなシートを対象とします。
