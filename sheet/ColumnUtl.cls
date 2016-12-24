@@ -38,11 +38,36 @@ End Function
 
 
 
-'シートと列を指定し、列を挿入します。
+'シートと列名を指定し、列を挿入します。
 'クリップボードに列が格納されてある場合、それが貼り付けされます。
 'クリップボードに列以外の有効でない範囲のデータがある場合エラーが生じる可能性があります。
 '
 '引数sheetNameのみ省略時はアクティブなシートが選択されます。
+
+
+Function insertColumn(columnName As String, Optional sheetName As Variant)
+
+Dim columnsNameStr As String
+columnsNameStr = columnName & ":" & columnName
+
+If IsMissing(sheetName) Then
+   Worksheets(ActiveSheet.Name).Range(columnsNameStr).Insert
+Else
+   Worksheets(sheetName).Range(columnsNameStr).Insert
+End If
+    
+End Function
+
+
+
+
+'シートと列範囲を指定し、列を挿入します。
+'クリップボードに列が格納されてある場合、それが貼り付けされます。
+'クリップボードに列以外の有効でない範囲のデータがある場合エラーが生じる可能性があります。
+'
+'引数sheetNameのみ省略時はアクティブなシートが選択されます。
+'
+' A列からC列へ挿入 => "A:C"
 
 Function insertColumns(columnsName As String, Optional sheetName As Variant)
 
@@ -72,8 +97,10 @@ End Function
 
 
 'シートと列を指定し、その列を指定された列へコピーします。
+'
+'"A:A"ではなく"A"のように引数を渡す。
 '貼り付けも行われます。
-
+'
 Function copyColumns(sheetName_src As String, columnName_src As String, sheetName_dst As String, columnName_dst As String)
 
     Worksheets(sheetName_src).Range(columnName_src + ":" + columnName_src).copy Worksheets(sheetName_dst).Range(columnName_dst + ":" + columnName_dst)
